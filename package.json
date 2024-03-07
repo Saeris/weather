@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "activate": "source .venv/bin/activate",
+    "activate": ".venv/Scripts/activate",
     "dev": "concurrently \"yarn dev:next\" \"yarn dev:api\"",
     "dev:api": "FLASK_DEBUG=1 flask --app src/api/app.py run -p 5000",
     "dev:next": "next dev",
