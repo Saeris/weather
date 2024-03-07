@@ -59,15 +59,11 @@ And you're good to go!
 
 1. Create a `.env` file in the project root directory and add your [api key](https://home.openweathermap.org/api_keys) from Open Weather Map to a key named `WEATHER_API_KEY=`
 
-   macOS/Linux users can use this command to write the key to a new file:
+   macOS/Linux users can use this command to write the key to a new file (will cause Flask to throw an error on Windows):
 
    ```bash
    echo WEATHER_API_KEY=api_key_here > .env
    ```
-
-   > [!CAUTION]
-   >
-   > The above command will cause Flask to throw an error if run on a Windows machine. This is because Powershell uses a different default text encoding compared to macOS/Linux. If you run into this error, delete the file and manually create it as instructed!
 
 1. Create a new local virtual environment:
 
