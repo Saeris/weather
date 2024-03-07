@@ -1,0 +1,99 @@
+{
+  "name": "weather",
+  "version": "0.1.0",
+  "author": "Drake Costa <drake@saeris.io> (https://saeris.gg/)",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "activate": "source .venv/bin/activate",
+    "dev": "concurrently \"yarn dev:next\" \"yarn dev:api\"",
+    "dev:api": "FLASK_DEBUG=1 flask --app src/api/app.py run -p 5000",
+    "dev:next": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "13.4.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@saeris/eslint-config": "^2.5.0",
+    "@types/node": "20.1.4",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "concurrently": "^8.0.1",
+    "eslint": "8.40.0",
+    "eslint-plugin-import": "^2.29.0",
+    "postcss": "8.4.23",
+    "postcss-load-config": "^4.0.1",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^9.3.0",
+    "prettier": "^3.1.0",
+    "typescript": "5.0.4",
+    "typescript-plugin-css-modules": "^5.0.2"
+  },
+  "packageManager": "yarn@4.1.0",
+  "eslintConfig": {
+    "extends": [
+      "@saeris/eslint-config/base",
+      "@saeris/eslint-config/react",
+      "@saeris/eslint-config/next",
+      "@saeris/eslint-config/typescript",
+      "@saeris/eslint-config/type-aware"
+    ],
+    "ignorePatterns": [
+      ".next/**/*",
+      "*.js",
+      "*.cjs",
+      "*.mjs",
+      "*.d.ts"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "ssr": [
+      "last 4 node major versions"
+    ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false
+  },
+  "postcss": {
+    "plugins": [
+      "postcss-nested",
+      [
+        "postcss-preset-env",
+        {
+          "autoprefixer": {
+            "flexbox": "no-2009"
+          },
+          "stage": 3,
+          "features": {
+            "custom-properties": false
+          }
+        }
+      ]
+    ]
+  }
+}
