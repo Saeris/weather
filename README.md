@@ -11,7 +11,7 @@ a tiny weather app build with [Nextjs](https://nextjs.org/) and [Flask](https://
 ## 🧰 Setup
 
 <details>
-  <summary>Prerequisites:</summary>
+  <summary>Click to view environment setup (optional)</summary>
 
 This repo uses Python and Node, and was scaffolded using the following tools.
 
@@ -65,7 +65,7 @@ And you're good to go!
    echo WEATHER_API_KEY=api_key_here > .env
    ```
 
-   > [!WARNING]
+   > [!CAUTION]
    >
    > The above command will cause Flask to throw an error if run on a Windows machine. This is because Powershell uses a different default text encoding compared to macOS/Linux. If you run into this error, delete the file and manually create it as instructed!
 
