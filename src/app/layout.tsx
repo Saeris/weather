@@ -9,12 +9,12 @@ const merriweather = Merriweather_Sans({
   subsets: ["latin"],
   variable: "--body"
 });
-/* eslint-enable @typescript-eslint/quotes */
 
 export const metadata = {
-  title: `weather`,
-  description: `simple weather app`
+  title: "weather",
+  description: "simple weather app"
 };
+/* eslint-enable @typescript-eslint/quotes */
 
 const Root: React.FC<{
   readonly children: React.ReactNode;

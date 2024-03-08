@@ -1,9 +1,9 @@
 import React from "react";
 import type { Weather, Forecast } from "./types";
-import styles from "./styles.module.css";
 import { Search } from "../../components/Search";
+import styles from "./styles.module.css";
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string;
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL!;
 
 const conditions = {
   /** clear sky */
@@ -17,18 +17,18 @@ const conditions = {
   /** shower rain */
   "09": String.fromCodePoint(0x1f327, 0xfe0f),
   /** rain */
-  "10": String.fromCodePoint(0x1f326, 0xfe0f),
+  10: String.fromCodePoint(0x1f326, 0xfe0f),
   /** thunderstorm */
-  "11": String.fromCodePoint(0x26c8, 0xfe0f),
+  11: String.fromCodePoint(0x26c8, 0xfe0f),
   /** snow */
-  "13": String.fromCodePoint(0x2744, 0xfe0f),
+  13: String.fromCodePoint(0x2744, 0xfe0f),
   /** mist */
-  "50": String.fromCodePoint(0x1f324, 0xfe0f)
+  50: String.fromCodePoint(0x1f324, 0xfe0f)
 } as const;
 
 const getWeather = async (zip: string): Promise<Weather> => {
   const res = await fetch(`${baseURL}/api/weather/${zip}`, {
-    cache: "no-cache"
+    cache: `no-cache`
   });
 
   if (!res.ok) {
@@ -51,24 +51,28 @@ const getForecast = async (zip: string): Promise<Forecast> => {
 const timestampToDate = (time: number, offset: number): Date =>
   new Date((time + offset) * 1000);
 
-const getHour = (date: Date) =>
-  date.toLocaleString("en-US", {
-    hour: "numeric",
+const getHour = (date: Date): string =>
+  date.toLocaleString(`en-US`, {
+    hour: `numeric`,
     hour12: true
   });
 
-const Page = async ({ params }: { readonly params: { zip: string } }) => {
+const Page = async ({
+  params
+}: {
+  readonly params: { zip: string };
+}): Promise<React.ReactElement> => {
   const weather = await getWeather(params.zip);
   const forecast = await getForecast(params.zip);
   const time = timestampToDate(weather.dt, weather.timezone).toLocaleString(
-    "en-US",
+    `en-US`,
     {
-      timeZone: "UTC",
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
+      timeZone: `UTC`,
+      weekday: `long`,
+      month: `long`,
+      day: `numeric`,
+      hour: `numeric`,
+      minute: `numeric`,
       hour12: true
     }
   );
@@ -96,7 +100,7 @@ const Page = async ({ params }: { readonly params: { zip: string } }) => {
       </section>
       <ul className={styles.forecast}>
         {forecast.list.map((period) => (
-          <li className={styles.period}>
+          <li key={period.dt_txt} className={styles.period}>
             <div>{getHour(timestampToDate(period.dt, weather.timezone))}</div>
             <div className="icon">
               {conditions[period.weather[0].icon.substring(0, 2)]}
