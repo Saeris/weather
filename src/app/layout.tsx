@@ -1,22 +1,29 @@
+/* eslint-disable camelcase, new-cap */
 import React from "react";
-import { Inter } from "next/font/google";
+import { Merriweather_Sans } from "next/font/google";
+import styles from "./styles.module.css";
 import "../theme/theme.css";
 
-const inter = Inter({ subsets: ["latin"] });
+/* eslint-disable @typescript-eslint/quotes */
+const merriweather = Merriweather_Sans({
+  subsets: ["latin"],
+  variable: "--body"
+});
+/* eslint-enable @typescript-eslint/quotes */
 
 export const metadata = {
-  title: "weather",
-  description: "simple weather app"
+  title: `weather`,
+  description: `simple weather app`
 };
 
 const Root: React.FC<{
-  children: React.ReactNode;
-}> = ({ children }) => {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
-};
+  readonly children: React.ReactNode;
+}> = ({ children }) => (
+  <html lang="en">
+    <body className={merriweather.variable}>
+      <main className={styles.content}>{children}</main>
+    </body>
+  </html>
+);
 
 export default Root;

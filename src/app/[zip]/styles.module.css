@@ -1,0 +1,152 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  gap: 32px;
+  width: 100%;
+  max-width: 800px;
+  padding-inline: 24px;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  h1 {
+    font: 700 48px var(--body);
+    text-shadow: var(--text-inset);
+  }
+
+  span {
+    font: 400 14px var(--body);
+  }
+}
+
+.temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 12px;
+  width: 100%;
+
+  span {
+    display: flex;
+    justify-content: center;
+    max-width: 128px;
+    font-size: 128px;
+    text-shadow: var(--sun-glow);
+  }
+
+  div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font: 400 24px var(--body);
+    letter-spacing: 0.02em;
+    text-align: center;
+
+    h2 {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font: italic 400 96px var(--body);
+      text-shadow: var(--text-inset);
+      background-clip: text;
+
+      sup {
+        display: inline-flex;
+        top: -0.35em;
+        letter-spacing: -0.35em;
+        user-select: none;
+      }
+
+      sub {
+        display: inline-flex;
+        font-size: 48px;
+        bottom: -0.35em;
+      }
+    }
+  }
+}
+
+.condition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: fit-content;
+  gap: 12px;
+  font: 400 20px var(--body);
+
+  h3 {
+    font-size: 48px;
+  }
+
+  label {
+    font-size: 16px;
+
+    sup {
+      letter-spacing: -0.4em;
+    }
+  }
+}
+
+.forecast {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  padding-block: 16px;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklch, var(--calypso-11), transparent 50%);
+
+  @media only screen and (max-width: 700px) and (orientation: portrait) {
+    justify-content: space-evenly;
+    gap: unset;
+  }
+}
+
+.period {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: fit-content;
+  padding-block: 24px;
+  padding-inline: 8px;
+  border-radius: 32px;
+  text-align: center;
+
+  /* Time */
+  div:first-child {
+    font: 400 14px var(--body);
+    text-shadow:
+      inset 1px 2px 2px 0 rgba(29, 30, 33, 0.25),
+      inset 0px 0px 1px 0 rgba(0, 0, 0, 0.1),
+      0 4px 4px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  /* Weather Icon */
+  div:nth-child(2) {
+    font-size: 40px;
+  }
+
+  /* Temp */
+  div:last-child {
+    font: italic 400 24px var(--body);
+
+    sup {
+      letter-spacing: -0.4em;
+    }
+  }
+
+  @media only screen and (max-width: 700px) and (orientation: portrait) {
+    gap: 12px;
+  }
+}
