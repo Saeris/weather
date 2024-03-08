@@ -3,7 +3,8 @@ import type { Weather, Forecast } from "./types";
 import { Search } from "../../components/Search";
 import styles from "./styles.module.css";
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL!;
+const scheme = process.env.Production ? `https://` : `http://`;
+const baseURL = process.env.NEXT_PUBLIC_VERCEL_URL!;
 
 const conditions = {
   /** clear sky */
@@ -27,7 +28,7 @@ const conditions = {
 } as const;
 
 const getWeather = async (zip: string): Promise<Weather> => {
-  const res = await fetch(`${baseURL}/api/weather/${zip}`, {
+  const res = await fetch(`${scheme}${baseURL}/api/weather/${zip}`, {
     cache: `no-cache`
   });
 
@@ -39,7 +40,7 @@ const getWeather = async (zip: string): Promise<Weather> => {
 };
 
 const getForecast = async (zip: string): Promise<Forecast> => {
-  const res = await fetch(`${baseURL}/api/forecast/${zip}`);
+  const res = await fetch(`${scheme}${baseURL}/api/forecast/${zip}`);
 
   if (!res.ok) {
     throw new Error(`Failed to fetch forecast data`);
