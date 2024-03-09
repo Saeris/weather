@@ -24,6 +24,7 @@ body {
   gap: 24px;
   width: 100%;
   margin: 0 auto;
+  background-color: var(--calypso-10);
   background: bottom 35% center / cover no-repeat url("/bg.png");
 
   transition-duration: 0.2s;

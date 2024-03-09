@@ -28,22 +28,28 @@ const conditions = {
 } as const;
 
 const getWeather = async (zip: string): Promise<Weather> => {
-  const res = await fetch(`${scheme}${baseURL}/api/weather/${zip}`, {
+  const url = `${scheme}${baseURL}/api/weather/${zip}`;
+  const res = await fetch(url, {
     cache: `no-cache`
   });
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch weather data`);
+    throw new Error(`Failed to fetch weather data`, {
+      cause: url
+    });
   }
 
   return res.json();
 };
 
 const getForecast = async (zip: string): Promise<Forecast> => {
-  const res = await fetch(`${scheme}${baseURL}/api/forecast/${zip}`);
+  const url = `${scheme}${baseURL}/api/forecast/${zip}`;
+  const res = await fetch(url);
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch forecast data`);
+    throw new Error(`Failed to fetch forecast data`, {
+      cause: url
+    });
   }
 
   return res.json();
