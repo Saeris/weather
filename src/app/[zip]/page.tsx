@@ -3,9 +3,12 @@ import type { Weather, Forecast } from "./types";
 import { Search } from "../../components/Search";
 import styles from "./styles.module.css";
 
-const baseURL = process.env.Production
-  ? `https://weather.saeris.gg`
-  : `http://localhost:3000`;
+const baseURL =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === `production`
+    ? `https://weather.saeris.gg`
+    : process.env.NEXT_PUBLIC_VERCEL_ENV === `preview`
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : `http://localhost:3000`;
 
 const conditions = {
   /** clear sky */
