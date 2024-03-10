@@ -3,8 +3,9 @@ import type { Weather, Forecast } from "./types";
 import { Search } from "../../components/Search";
 import styles from "./styles.module.css";
 
-const scheme = process.env.Production ? `https://` : `http://`;
-const baseURL = process.env.NEXT_PUBLIC_VERCEL_URL!;
+const baseURL = process.env.Production
+  ? `https://weather.saeris.gg`
+  : `http://localhost:3000`;
 
 const conditions = {
   /** clear sky */
@@ -28,7 +29,7 @@ const conditions = {
 } as const;
 
 const getWeather = async (zip: string): Promise<Weather> => {
-  const url = `${scheme}${baseURL}/api/weather/${zip}`;
+  const url = `${baseURL}/api/weather/${zip}`;
   const res = await fetch(url, {
     cache: `no-cache`
   });
@@ -43,7 +44,7 @@ const getWeather = async (zip: string): Promise<Weather> => {
 };
 
 const getForecast = async (zip: string): Promise<Forecast> => {
-  const url = `${scheme}${baseURL}/api/forecast/${zip}`;
+  const url = `${baseURL}/api/forecast/${zip}`;
   const res = await fetch(url);
 
   if (!res.ok) {
